@@ -202,7 +202,7 @@
 						description="J2STORE_PRODUCT_SHOW_FEATURE_DESC"
 				>
 					<option value="0">JNO</option>
-					<option value="1">JYes</option>
+					<option value="1">JYES</option>
 				</field>
 				<field
 						name="list_show_title"
