@@ -3,7 +3,6 @@
  * @copyright Copyright (C) 2014-2019 Weblogicx India. All rights reserved.
  * @copyright Copyright (C) 2024 J2Commerce, Inc. All rights reserved.
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
- * @author  Sasi Varna Kumar (weblogicxindia.com)
  * @website https://www.j2commerce.com
  */
 // No direct access
