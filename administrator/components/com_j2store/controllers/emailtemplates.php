@@ -77,7 +77,7 @@ class J2StoreControllerEmailtemplates extends F0FController {
 		$languages = HTMLHelper::_('contentlanguage.existing');
 		$languageList = ['*' => Text::_('JALL_LANGUAGE')];
 		foreach ($languages as $lang) {
-			$languageList[$lang->lang_code] = Text::_(strtoupper($lang->title_native));
+			$languageList[$lang->value] = Text::_(strtoupper($lang->title_native));
 		}
 
 		$vars->field_sets[] = [
