@@ -165,10 +165,19 @@ class J2StoreControllerEmailtemplates extends F0FController {
 			]
 		];
 
-		$bodySource = $emailtemplateTable->body_source ?? 'html';
-		$sourceHide = ($bodySource === 'html') ? 'display:none;' : '';
-		$bodySourceFile = ($bodySource !== 'file' || empty($emailtemplateTable->body_source_file)) ? 'display:none;' : '';
-		$bodyHide = ($bodySource === 'file') ? 'display:none;' : '';
+		$body_source = isset($emailtemplate_table->body_source) && !empty($emailtemplate_table->body_source) ? $emailtemplate_table->body_source: 'html';
+		$source_hide = '';
+		$body_source_file = '';
+		$body_hide = '';
+		if($body_source == 'html'){
+			$source_hide = 'display:none;';
+			$body_source_file = 'display:none;';
+		}elseif ($body_source == 'file'){
+			if(empty($emailtemplate_table-> body_source_file)){
+				$source_hide = 'display:none;';
+			}
+			$body_hide = 'display:none;';
+		}
 
 		$vars->field_sets[] = [
 			'id' => 'advanced_information',
