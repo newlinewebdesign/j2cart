@@ -67,7 +67,7 @@ class J2StoreControllerEmailtemplates extends F0FController {
 		}
 
 		$groupList = HTMLHelper::_('user.groups');
-		$groupOptions = ['*' => Text::_('JALL')];
+		$groupOptions = ['' => Text::_('JALL')];
 		foreach ($groupList as $row) {
 			$groupOptions[$row->value] = Text::_($row->text);
 		}
@@ -163,6 +163,7 @@ class J2StoreControllerEmailtemplates extends F0FController {
 			]
 		];
 
+
 		$body_source = isset($emailtemplate_table->body_source) && !empty($emailtemplate_table->body_source) ? $emailtemplate_table->body_source: 'html';
 		$source_hide = '';
 		$body_source_file = '';
@@ -176,6 +177,7 @@ class J2StoreControllerEmailtemplates extends F0FController {
 			}
 			$body_hide = 'display:none;';
 		}
+
 
 		$vars->field_sets[] = [
 			'id' => 'advanced_information',
