@@ -88,12 +88,12 @@ $session = Factory::getApplication()->getSession();
             <table class="table itemList">
                 <thead>
                 <tr>
-                    <th scope="col" class="w-10 text-center"><?php echo Text::_('J2STORE_APP_ID');?></th>
+                    <th scope="col" class="w-10 text-center d-none d-xxl-table-cell"><?php echo Text::_('J2STORE_APP_ID');?></th>
                     <th scope="col" class="w-10 text-center"><?php echo Text::_('JSTATUS');?></th>
                     <th scope="col" class="w-50"><?php echo Text::_('J2STORE_APP');?></th>
-                    <th scope="col" class="w-10"><?php echo Text::_('J2STORE_APP_VERSION');?></th>
+                    <th scope="col" class="w-10 d-none d-lg-table-cell"><?php echo Text::_('J2STORE_APP_VERSION');?></th>
 
-                    <th scope="col" class="w-30"></th>
+                    <th scope="col" class="w-30 d-none d-xxl-table-cell"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -116,7 +116,7 @@ $session = Factory::getApplication()->getSession();
 					}
 					?>
                     <tr class="row<?php echo $i;?>">
-                        <td class="text-center align-middle">
+                        <td class="text-center align-middle d-none d-xxl-table-cell">
 							<?php echo $app->extension_id;?>
                         </td>
                         <td class="text-center align-middle">
@@ -131,27 +131,31 @@ $session = Factory::getApplication()->getSession();
 							<?php endif; ?>
                         </td>
                         <td>
-                            <div class="d-flex">
+                            <div class="d-block d-lg-flex">
                                 <div class="flex-shrink-0">
 									<?php if ($app->enabled): ?>
-                                    <a href="<?php echo 'index.php?option=com_j2store&view=apps&task=view&layout=view&id=' . $app->extension_id ?>" class="d-inline-block">
-										<?php endif;?>
-										<?php if($imagePath):?>
-                                            <img src="<?php echo $imagePath; ?>" class="img-fluid j2commerce-app-image" alt="<?php echo Text::_($app->name); ?>"/>
-										<?php elseif (file_exists(JPATH_SITE . '/plugins/j2store/' . $app->element . '/images/' . $app->element . '.png')): ?>
-                                            <img src="<?php echo Uri::root(true) . '/plugins/j2store/' . $app->element . '/images/' . $app->element . '.png'; ?>" class="img-fluid j2commerce-app-image" alt="<?php echo Text::_($app->name); ?>"/>
-										<?php elseif (file_exists(JPATH_SITE . '/media/j2store/images/' . $app->element . '.png')): ?>
-                                            <img src="<?php echo Uri::root(true) . '/media/j2store/images/' . $app->element . '.png'; ?>" class="img-fluid j2commerce-app-image" alt="<?php echo Text::_($app->name); ?>"/>
-
+                                    <a href="<?php echo 'index.php?option=com_j2store&view=apps&task=view&layout=view&id=' . $app->extension_id ?>" class="d-none d-lg-inline-block d-md-block">
 										<?php else: ?>
-                                            <img src="<?php echo Uri::root(true) . '/media/j2store/images/app_placeholder.png'; ?>" class="img-fluid j2commerce-app-image" alt="<?php echo Text::_($app->name); ?>"/>
-										<?php endif; ?>
-										<?php if ($app->enabled): ?>
+                                        <span class="d-none d-lg-inline-block d-md-block">
+                                        <?php endif;?>
+											<?php if($imagePath):?>
+                                                <img src="<?php echo $imagePath; ?>" class="img-fluid j2commerce-app-image" alt="<?php echo Text::_($app->name); ?>"/>
+											<?php elseif (file_exists(JPATH_SITE . '/plugins/j2store/' . $app->element . '/images/' . $app->element . '.png')): ?>
+                                                <img src="<?php echo Uri::root(true) . '/plugins/j2store/' . $app->element . '/images/' . $app->element . '.png'; ?>" class="img-fluid j2commerce-app-image" alt="<?php echo Text::_($app->name); ?>"/>
+											<?php elseif (file_exists(JPATH_SITE . '/media/j2store/images/' . $app->element . '.png')): ?>
+                                                <img src="<?php echo Uri::root(true) . '/media/j2store/images/' . $app->element . '.png'; ?>" class="img-fluid j2commerce-app-image" alt="<?php echo Text::_($app->name); ?>"/>
+
+											<?php else: ?>
+                                                <img src="<?php echo Uri::root(true) . '/media/j2store/images/app_placeholder.png'; ?>" class="img-fluid j2commerce-app-image" alt="<?php echo Text::_($app->name); ?>"/>
+											<?php endif; ?>
+											<?php if ($app->enabled): ?>
                                     </a>
+								<?php else: ?>
+                                    </span>
 								<?php endif;?>
                                 </div>
-                                <div class="flex-grow-1 ms-3">
-                                    <div class="break-word">
+                                <div class="flex-grow-1 ms-lg-3 mt-2 mt-lg-0">
+                                    <div>
 										<?php if ($app->enabled): ?>
                                             <a href="<?php echo 'index.php?option=com_j2store&view=apps&task=view&layout=view&id=' . $app->extension_id ?>"><?php echo Text::_($app->name); ?></a>
 										<?php else: ?>
@@ -159,14 +163,15 @@ $session = Factory::getApplication()->getSession();
 										<?php endif;?>
 
                                     </div>
-                                    <div class="small d-none d-lg-block"><?php echo Text::_(HTMLHelper::_('string.truncate', $desc, 120, true, true));?></div>
+                                    <div class="small d-none d-md-block"><?php echo Text::_(HTMLHelper::_('string.truncate', $desc, 120, true, true));?></div>
+                                    <div class="small d-block d-lg-none"><b><?php echo Text::_('J2STORE_APP_VERSION');?>:</b> <?php echo $params->get('version'); ?></div>
                                 </div>
                             </div>
                         </td>
-                        <td class="align-middle">
+                        <td class="align-middle d-none d-lg-table-cell">
                             <small><b><?php echo $params->get('version'); ?></b></small>
                         </td>
-                        <td class="align-middle text-center">
+                        <td class="align-middle text-center d-none d-xxl-table-cell">
 							<?php if ($app->enabled): ?>
                                 <a class="btn btn-sm btn-primary app-button-open text-decoration-none" href="<?php echo 'index.php?option=com_j2store&view=apps&task=view&layout=view&id=' . $app->extension_id ?>" title="<?php echo Text::_('J2STORE_APP_OPEN'); ?>">
 									<?php echo Text::_('J2STORE_APP_OPEN'); ?>
