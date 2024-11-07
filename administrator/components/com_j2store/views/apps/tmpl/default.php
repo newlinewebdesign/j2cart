@@ -55,7 +55,7 @@ $session = Factory::getApplication()->getSession();
 </script>
 
 
-<form action="<?php echo Route::_('index.php?option=com_j2store&view=apps'); ?>" method="post" name="adminForm" id="adminForm" xmlns="https://www.w3.org/1999/html">
+<form action="<?php echo Route::_('index.php?option=com_j2store&view=apps'); ?>" method="post" name="adminForm" id="adminForm">
     <input type="hidden" name="task" value="browse"/>
     <input type="hidden" name="boxchecked" value="0"/>
     <input type="hidden" name="filter_order" value="<?php echo $this->lists->order; ?>"/>
@@ -186,7 +186,7 @@ $session = Factory::getApplication()->getSession();
 				<?php echo $this->pagination->getListFooter();?>
             </nav>
             <div class="text-center mt-2 mb-4 px-4">
-                <i class="fa-4x mb-2 fa-solid fa-cart-plus"></i>
+                <i class="fa-4x mb-2 fa-solid fas fa-cart-plus"></i>
                 <h2 class="fs-1 fw-bold"><?php echo Text::_('J2STORE_APP_STORE_TITLE');?></h2>
                 <p class="fs-3 text-muted"><?php echo Text::_('J2STORE_APP_STORE_DESC');?></p>
                 <a target="_blank" class="btn btn-primary app-button-open" href="https://www.j2commerce.com/extensions"><?php echo Text::_('J2STORE_GET_MORE_APPS'); ?></a>
