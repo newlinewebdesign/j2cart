@@ -9,36 +9,56 @@
 
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 
-
+HTMLHelper::_('bootstrap.collapse', '[data-bs-toggle="collapse"]');
 $row_class = 'row';
 $col_class = 'col-md-';
 if (version_compare(JVERSION, '3.99.99', 'lt')) {
     $row_class = 'row-fluid';
     $col_class = 'span';
 }
+
+$count = 0;
+$count2 = 0;
+$fieldsearchableCount = 0;
+
 ?>
 <?php if(isset($vars->header) && !empty($vars->header)):?>
 	<?php $sortable_field = array();?>
     <div class="btn-toolbar w-100 justify-content-end mb-3">
         <?php foreach ($vars->header as $name => $field):
+
             if(isset($field['sortable']) && $field['sortable'] === 'true'){
                 $sortable_field[$name] = Text::_($field['label']);
             } ?>
+
             <?php if(isset($field['type']) && $field['type'] === 'fieldsearchable'):?>
-                <div class="filter-search-bar btn-group flex-grow-1 flex-lg-grow-0 mb-2 mb-lg-0">
-                    <div class="input-group w-100 searchable_field">
-                        <input id="search_<?php echo $name;?>" type="text" name="<?php echo $name;?>" value="<?php echo $vars->state->get($name,'');?>" placeholder="<?php echo Text::_($field['label'])?>" class="form-control j2store-product-filters">
-                        <span class="filter-search-bar__label visually-hidden">
-                            <label id="search-lbl" for="search"><?php echo Text::_($field['label'])?></label>
-                        </span>
-                        <button type="button" class="btn btn-primary" onclick="document.adminForm.submit()"><span class="filter-search-bar__button-icon icon-search" aria-hidden="true"></span></button>
-                        <button type="button" class="btn btn-primary" onclick="document.adminForm.<?php echo $name;?>.value='';document.adminForm.submit()"><?php echo Text::_( 'JCLEAR' );?></button>
+                <?php $count++;?>
+                <?php $fieldsearchableCount++;?>
+                <?php if($count == 1) : ?>
+                    <div class="filter-search-bar btn-group flex-grow-1 flex-lg-grow-0 mb-2 mb-lg-0">
+                        <div class="input-group w-100 searchable_field">
+                            <input id="search_<?php echo $name;?>" type="text" name="<?php echo $name;?>" value="<?php echo $vars->state->get($name,'');?>" placeholder="<?php echo Text::_($field['label'])?>" class="form-control j2store-product-filters">
+                            <span class="filter-search-bar__label visually-hidden">
+                                <label id="search-lbl" for="search"><?php echo Text::_($field['label'])?></label>
+                            </span>
+                            <button type="button" class="btn btn-primary" onclick="document.adminForm.submit()"><span class="filter-search-bar__button-icon icon-search" aria-hidden="true"></span></button>
+                            <button type="button" class="btn btn-primary" onclick="document.adminForm.<?php echo $name;?>.value='';document.adminForm.submit()"><?php echo Text::_( 'JCLEAR' );?></button>
+                        </div>
                     </div>
-                </div>
+                <?php endif; ?>
             <?php endif; ?>
         <?php endforeach; ?>
+
+        <?php if($fieldsearchableCount > 1):?>
+            <div class="filter-search-actions btn-group ms-lg-2 flex-grow-1 flex-lg-grow-0 mb-2 mb-lg-0">
+                <button type="button" class="filter-search-actions__button btn btn-primary js-stools-btn-filter w-100" data-bs-toggle="collapse" data-bs-target="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters">
+                    <?php echo Text::_('JFILTER_OPTIONS');?><span class="icon-angle-down ms-1" aria-hidden="true"></span>
+                </button>
+            </div>
+        <?php endif;?>
 
         <div class="ordering-select d-flex gap-2 ms-lg-2 flex-grow-1 flex-lg-grow-0">
 	        <?php if(!empty($sortable_field)):?>
@@ -60,5 +80,34 @@ if (version_compare(JVERSION, '3.99.99', 'lt')) {
 	        <?php endif; ?>
 	        <?php echo $vars->pagination->getLimitBox();?>
         </div>
+	    <?php if($fieldsearchableCount > 1): ?>
+            <div class="js-stools-container-filters clearfix bg-white collapse w-100 mb-4 mt-3" id="collapseFilters">
+                <div class="px-2 pt-2 pb-0">
+                    <div class="row">
+                        <?php foreach ($vars->header as $name => $field):
+                            if(isset($field['sortable']) && $field['sortable'] === 'true'){
+                                $sortable_field[$name] = Text::_($field['label']);
+                            } ?>
+
+                            <?php if(isset($field['type']) && $field['type'] === 'fieldsearchable'):?>
+                            <?php $count2++;?>
+                            <?php if($count2 > 1) : ?>
+                                <div class="col-lg-3 col-md-4 mb-2">
+                                    <div class="input-group w-100 searchable_field">
+                                        <input id="search_<?php echo $name;?>" type="text" name="<?php echo $name;?>" value="<?php echo $vars->state->get($name,'');?>" placeholder="<?php echo Text::_($field['label'])?>" class="form-control j2store-product-filters">
+                                        <span class="filter-search-bar__label visually-hidden">
+                                                <label id="search-lbl" for="search"><?php echo Text::_($field['label'])?></label>
+                                            </span>
+                                        <button type="button" class="btn btn-primary" onclick="document.adminForm.submit()"><span class="filter-search-bar__button-icon icon-search" aria-hidden="true"></span></button>
+                                        <button type="button" class="btn btn-primary" onclick="document.adminForm.<?php echo $name;?>.value='';document.adminForm.submit()"><?php echo Text::_( 'JCLEAR' );?></button>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+	    <?php endif; ?>
     </div>
 <?php endif; ?>
