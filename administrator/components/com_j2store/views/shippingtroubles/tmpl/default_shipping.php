@@ -10,10 +10,12 @@
 defined('_JEXEC') or die('Restricted access');
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
+
 use Joomla\CMS\Router\Route;
 
 $platform = J2Store::platform();
 $platform->loadExtra('behavior.modal');
+$sidebar = JHtmlSidebar::render();
 
 $this->params = J2Store::config();
 
