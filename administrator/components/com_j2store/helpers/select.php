@@ -157,7 +157,7 @@ class J2StoreHelperSelect {
 
 	// get paymentlist
 	public static function PaymentList($selected = null, $id = '', $attribs = array(), $default_option = null) {
-		$paymentmethod_options [] = HTMLHelper::_( 'select.option', '', Text::_ ( 'JALL' ) );
+		$paymentmethod_options [] = HTMLHelper::_( 'select.option', '', Text::_ ('JALL') );
 
 		return self::genericlist ( $paymentmethod_options, $id, $attribs, $selected, $id );
 	}
