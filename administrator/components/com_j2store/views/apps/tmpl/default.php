@@ -92,7 +92,6 @@ $session = Factory::getApplication()->getSession();
                     <th scope="col" class="w-10 text-center"><?php echo Text::_('JSTATUS');?></th>
                     <th scope="col" class="w-50"><?php echo Text::_('J2STORE_APP');?></th>
                     <th scope="col" class="w-10 d-none d-lg-table-cell"><?php echo Text::_('J2STORE_APP_VERSION');?></th>
-
                     <th scope="col" class="w-30 d-none d-xxl-table-cell"></th>
                 </tr>
                 </thead>

@@ -1,49 +1,60 @@
 <?php
-defined('_JEXEC') or die;
+/**
+ * @package J2Store
+ * @copyright Copyright (c)2014-17 Ramesh Elamathi / J2Store.org
+ * @copyright Copyright (c) 2024 J2Commerce . All rights reserved.
+ * @license GNU GPL v3 or later
+ */
+
+
+// No direct access to this file
+defined('_JEXEC') or die('Restricted access');
+use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
+
+$wa = Factory::getApplication()->getDocument()->getWebAssetManager();
+$wa->useScript('table.columns');
+
 $cols_count = 0;
+
+
 ?>
-<table class="table table-bordered table-striped">
+<table class="table itemList" id="j2storeList">
     <?php if (isset($vars->header) && !empty($vars->header)): ?>
         <thead>
         <tr>
-            <?php foreach ($vars->header as $name => $field): ?>
+            <?php foreach ($vars->header as $name => $field):?>
+
                 <?php if (isset($field['type']) && $field['type'] == 'rowselect'): ?>
-                    <th <?php echo isset($field['tdwidth']) && !empty($field['tdwidth']) ? 'style="width:' . $field['tdwidth'] . '"' : ''; ?>>
-                        <input type="checkbox" name="checkall-toggle" value=""
-                               title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>"
-                               onclick="Joomla.checkAll(this)"/>
-                    </th>
+                    <td class="w-1"><input type="checkbox" name="checkall-toggle" value="" title="<?php echo Text::_('JGLOBAL_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)" /></td>
                     <?php $cols_count += 1; ?>
                 <?php elseif (isset($field['sortable']) && $field['sortable'] == 'true'): ?>
-                    <th>
-                        <?php echo JHtml::_('grid.sort', $field['label'], $name, $vars->state->filter_order_Dir, $vars->state->filter_order); ?>
+                    <th scope="col">
+                        <?php echo HTMLHelper::_('grid.sort', $field['label'], $name, $vars->state->filter_order_Dir, $vars->state->filter_order); ?>
                     </th>
                     <?php $cols_count += 1; ?>
                 <?php elseif (isset($field['label']) && $field['label']): ?>
-                    <th><?php echo JText::_($field['label']); ?></th>
+                    <th scope="col"><?php echo Text::_($field['label']); ?></th>
                     <?php $cols_count += 1; ?>
                 <?php else: ?>
-                    <th><?php echo JText::_($name); ?></th>
+                    <th scope="col"><?php echo Text::_($name); ?></th>
                     <?php $cols_count += 1; ?>
                 <?php endif; ?>
             <?php endforeach; ?>
         </tr>
         </thead>
-        <tfoot>
-        <td colspan="<?php echo $cols_count; ?>">
-            <?php echo $vars->pagination->getListFooter(); ?>
-        </td>
-        </tfoot>
+
         <tbody>
         <?php if (isset($vars->items) && !empty($vars->items)): ?>
             <?php foreach ($vars->items as $i => $item): ?>
                 <tr>
                 <?php foreach ($vars->header as $name => $field): ?>
                     <?php if (isset($field['type']) && $field['type'] == 'rowselect'): ?>
-                        <td>
+                        <td class="text-center">
                             <?php if((isset($item->orderstatus_core) && $item->orderstatus_core == 1) || (isset($item->field_core) && $item->field_core == 1)):?>
                             <?php else:?>
-                                <?php echo JHtml::_('grid.id', $i, $item->$name) ?>
+                                <?php echo HTMLHelper::_('grid.id', $i, $item->$name) ?>
                             <?php endif; ?>
                         </td>
                     <?php elseif (isset($field['type']) && in_array($field['type'], array('couponexpiretext', 'fieldsql','corefieldtypes','receivertypes','orderstatuslist','shipping_link'))): ?>
@@ -52,7 +63,7 @@ $cols_count = 0;
                         <?php $url_id = $field['url_id']; ?>
                         <td>
                             <a href="<?php echo str_replace('[ITEM:ID]', $item->$url_id, $field['url']); ?>">
-                                <?php echo isset($field['translate']) && $field['translate'] ? JText::_($item->$name):$item->$name; ?>
+                                <?php echo isset($field['translate']) && $field['translate'] ? Text::_($item->$name):$item->$name; ?>
                             </a>
                         </td>
                     <?php elseif (isset($field['type']) && $field['type'] == 'published'): ?>
@@ -65,7 +76,7 @@ $cols_count = 0;
                                 echo (new \Joomla\CMS\Button\PublishedButton)->render((int)$item->$name, $i, $options);
                                 ?>
                             <?php else: ?>
-                                <?php echo JHtml::_('grid.published', $item->$name, $i); ?>
+                                <?php echo HTMLHelper::_('grid.published', $item->$name, $i); ?>
                             <?php endif; ?>
                         </td>
                     <?php else: ?>
@@ -76,10 +87,12 @@ $cols_count = 0;
             </tr>
         <?php else: ?>
             <tr>
-                <td colspan="<?php echo $cols_count; ?>"><?php echo JText::_('J2STORE_NO_ITEMS_FOUND'); ?></td>
+                <td colspan="<?php echo $cols_count; ?>"><?php echo Text::_('J2STORE_NO_ITEMS_FOUND'); ?></td>
             </tr>
         <?php endif; ?>
         </tbody>
     <?php endif; ?>
 </table>
+
 <?php echo $vars->extra_content ?? '';?>
+<?php echo $vars->pagination->getListFooter(); ?>
