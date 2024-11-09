@@ -167,10 +167,6 @@ class J2StoreControllerManufacturers extends F0FController
 			";
 	    $wa->addInlineScript($script, [], []);
 
-		/*echo '<script>
-            jQuery("#country_id").trigger("change");
-			jQuery("#zone_id").trigger("liszt:updated");
-             </script>';*/
     }
     public function browse()
     {
@@ -217,5 +213,4 @@ class J2StoreControllerManufacturers extends F0FController
         $vars->pagination = $model->getPagination();
         echo $this->_getLayout('default',$vars);
     }
-
 }
