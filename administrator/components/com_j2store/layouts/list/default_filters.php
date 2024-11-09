@@ -39,7 +39,7 @@ $fieldsearchableCount = 0;
                 <?php $fieldsearchableCount++;?>
                 <?php if($count == 1) : ?>
                     <div class="filter-search-bar btn-group flex-grow-1 flex-lg-grow-0 mb-2 mb-lg-0">
-                        <div class="input-group w-100 searchable_field">
+                        <div class="input-group w-100 me-lg-2">
                             <input id="search_<?php echo $name;?>" type="text" name="<?php echo $name;?>" value="<?php echo $vars->state->get($name,'');?>" placeholder="<?php echo Text::_($field['label'])?>" class="form-control j2store-product-filters">
                             <span class="filter-search-bar__label visually-hidden">
                                 <label id="search-lbl" for="search"><?php echo Text::_($field['label'])?></label>

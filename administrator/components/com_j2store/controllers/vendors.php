@@ -123,6 +123,13 @@ class J2StoreControllerVendors extends F0FController
             ),
             'label' => 'J2STORE_VENDOR_ADVANCED_INFORMATION',
             'fields' => array(
+	            'vendor_id' => array(
+		            'label' => 'J2STORE_VENDOR_ID',
+		            'type' => 'text',
+		            'name' => 'vendor_id',
+		            'value' => $vendor_table->j2store_vendor_id,
+		            'options' => array('class' => 'form-control','disabled' => '','readonly' => '')
+	            ),
                 'company' => array(
                     'label' => 'J2STORE_ADDRESS_COMPANY_NAME',
                     'type' => 'text',
@@ -199,9 +206,8 @@ class J2StoreControllerVendors extends F0FController
         $this->addBrowseToolBar();
         $header = array(
             'j2store_vendor_id' => array(
-	            'sortable' => 'true',
-                'label' => 'J2STORE_VENDOR_ID',
-                'class' => 'd-none d-lg-table-cell'
+	            'type' => 'rowselect',
+                'label' => 'J2STORE_VENDOR_ID'
 
             ),
             'first_name' => array(
