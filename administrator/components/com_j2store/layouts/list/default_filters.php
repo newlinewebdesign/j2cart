@@ -42,7 +42,7 @@ $fieldsearchableCount = 0;
                         <div class="input-group w-100 me-lg-2">
                             <input id="search_<?php echo $name;?>" type="text" name="<?php echo $name;?>" value="<?php echo $vars->state->get($name,'');?>" placeholder="<?php echo Text::_($field['label'])?>" class="form-control j2store-product-filters">
                             <span class="filter-search-bar__label visually-hidden">
-                                <label id="search-lbl" for="search"><?php echo Text::_($field['label'])?></label>
+                                <label id="search-lbl" for="search_<?php echo $name;?>"><?php echo Text::_($field['label'])?></label>
                             </span>
                             <button type="button" class="btn btn-primary" onclick="document.adminForm.submit()"><span class="filter-search-bar__button-icon icon-search" aria-hidden="true"></span></button>
                             <button type="button" class="btn btn-primary" onclick="document.adminForm.<?php echo $name;?>.value='';document.adminForm.submit()"><?php echo Text::_( 'JCLEAR' );?></button>
