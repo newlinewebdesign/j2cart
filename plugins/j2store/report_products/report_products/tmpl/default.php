@@ -55,7 +55,7 @@ $currency = J2Store::currency();
               action="<?php echo $form['action']; ?>" name="adminForm" id="adminForm">
             <div class="<?php echo $col_class; ?> 6">
                 <div class="<?php echo $col_class; ?> 12" style="margin-bottom: 10px; margin-left: 12px;">
-			<span class="<?php echo $col_class; ?> 6"> <label> <strong><?php echo JText::_('J2STORE_FILTER_SEARCH'); ?></strong>
+			<span class="<?php echo $col_class; ?> 6"> <label> <strong><?php echo JText::_('J2STORE_FILTER_PRODUCTS_SEARCH'); ?></strong>
 			</label> <input type="text" name="filter_search"
                             value="<?php echo htmlspecialchars($vars->state->get('filter_search')); ?>"
                             id="search"/>
@@ -179,7 +179,7 @@ $currency = J2Store::currency();
                             <tbody>
                             <tr>
                                 <td><?php echo $product->orderitem_name; ?>
-                                    <br>
+                                    <br/>
                                     <?php echo JText::_('J2STORE_SKU'); ?>: <?php echo $product->orderitem_sku; ?></td>
                                 <td><?php echo $product->total_qty; ?></td>
                                 <td><?php echo $currency->format($product->total_item_discount + $product->total_item_discount_tax); ?></td>
