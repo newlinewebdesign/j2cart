@@ -182,6 +182,15 @@ class J2Currency {
 			return 0;
 		}
 	}
+	public function getThousandSysmbol($currency=''){ // kept for backwards compatibility with those who use layout overrides on the template
+		if (!$currency) {
+			return $this->currencies[$this->code]['currency_thousands'];
+		} elseif ($currency && isset($this->currencies[$currency])) {
+			return $this->currencies[$currency]['currency_thousands'];
+		} else {
+			return 0;
+		}
+	}
 
   	public function getCode() {
     	return $this->code;
