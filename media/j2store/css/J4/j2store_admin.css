@@ -762,7 +762,7 @@ div.j2store-tab div.j2store-tab-content:not(.active){
 
 .j2store_field_required {
     color: #ff0000;
-    margin-left: 3px;
+    margin-inline-start: 3px;
 }
 
 #myFileModal .modal-body {
