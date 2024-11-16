@@ -81,7 +81,7 @@ if (version_compare(JVERSION, '3.99.99', 'lt')) {
 		                    <?php if(!empty($thumbimage )): ?>
                                 <div class="flex-shrink-0">
                                     <a href="<?php echo $item->product->product_edit_url;?>" class="d-none d-lg-inline-block" title="<?php echo $item->product->product_name;?>">
-                                        <img src="<?php echo $thumbimage;?>" class="img-fluid j2store-product-thumb-75" alt="<?php echo $this->escape($item->product->product_name);?>">
+                                        <img src="<?php echo $thumbimage;?>" class="img-fluid object-fit-cover width-64 height-64" alt="<?php echo $this->escape($item->product->product_name);?>">
                                     </a>
                                 </div>
 		                    <?php endif;?>
