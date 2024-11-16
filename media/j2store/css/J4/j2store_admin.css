@@ -889,18 +889,7 @@ div.j2store-tab div.j2store-tab-content:not(.active){
     #j2store-navbar .navbar-nav .dropdown-menu {
         position: static;
     }
-    /*#j2store-navbar .collapse:not(.show) {
-        display: none;
-    }*/
 
-   /* #j2store-navbar .nav-item {
-        padding: 10px 47px;
-    }*/
-    /*#j2store-navbar .navbar {
-        position: sticky;
-        top: 0;
-        z-index: 1;
-    }*/
     #j2store-navbar .btn-group h3 {
         color: #FFFFFF;
         margin: -40px -117px;
@@ -925,9 +914,6 @@ div.j2store-tab div.j2store-tab-content:not(.active){
 .com_j2store a[target="_blank"]::before{
     content: none !important;
 }
-/*.com_j2store joomla-field-fancy-select .choices{
-    width: 260px;
-}*/
 
 .com_j2store .min-w-0 {min-width:0!important;}
 .com_j2store .form-control-qty {max-width:150px!important;}
@@ -937,6 +923,10 @@ div.j2store-tab div.j2store-tab-content:not(.active){
 .com_j2store .table.itemList.options-list joomla-field-media .field-media-preview-icon {background-size: 4rem;width: 4rem;height: 4rem;}
 .com_j2store .text-subdued {color:#64748b;}
 .com_j2store .max-content-height {height: max-content;}
+.com_j2store .width-48 {width: 48px;}
+.com_j2store .height-48 {height: 48px;}
+.com_j2store .width-64 {width: 64px;}
+.com_j2store .height-64 {height: 64px;}
 
 @media (min-width: 300px) {
     .w-xs-25 { width: 25% !important; }
