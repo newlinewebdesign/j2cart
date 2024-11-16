@@ -131,7 +131,6 @@ trait list_view {
 
     protected function exportButton($view = 'orders') {
         if(!isset($view) || empty($view)) return;
-        //$bar = JToolBar::getInstance('toolbar');
         $bar = Factory::getContainer()->get(ToolbarFactoryInterface::class)->createToolbar('toolbar');
         // Add "Export to CSV"
         $link = URI::getInstance();
