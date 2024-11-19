@@ -66,7 +66,7 @@ class J2Html
 
         // return price input
         $html = '';
-        $html .= '<div class="input-group input-group-sm">';
+        $html .= '<div class="input-group">';
         if (!empty($symbol)) {
             $html .= '<span class="input-group-text">' . $symbol . '</span>';
         }
