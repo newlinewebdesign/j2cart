@@ -74,7 +74,7 @@ $alert_html = '<joomla-alert type="danger" close-text="Close" dismiss="true" rol
                         <div class="form-grid">
                             <div class="control-group" id="j2store-product-enable">
                                 <div class="control-label"><?php echo J2Html::label(Text::_('J2STORE_TREAT_AS_PRODUCT'), 'enabled',array());?></div>
-		                        <?php echo J2Html::inlineRadio($this->form_prefix.'[enabled]', $this->item->enabled, array('id'=>'j2store-product-enabled-radio-group', 'class'=>'form-check form-check-inline'));?>
+		                        <?php echo J2Html::radioBooleanList($this->form_prefix.'[enabled]', $this->item->enabled, array('id'=>'j2store-product-enabled-radio-group', 'class'=>'form-check form-check-inline'));?>
                             </div>
                             <div class="control-group" id="j2store-product-type">
 		                        <?php if(!empty($this->item->product_type)): ?>
