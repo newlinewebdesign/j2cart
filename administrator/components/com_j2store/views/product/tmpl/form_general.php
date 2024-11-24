@@ -17,7 +17,7 @@ use Joomla\CMS\Language\Text;
         <div class="form-grid">
             <div class="control-group">
                 <div class="control-label"><?php echo J2Html::label(Text::_('J2STORE_PRODUCT_VISIBILITY'), 'visibility'); ?></div>
-		        <?php echo J2Html::inlineRadio($this->form_prefix.'[visibility]', $this->item->visibility ); ?>
+		        <?php echo J2Html::radioBooleanList($this->form_prefix.'[visibility]', $this->item->visibility ); ?>
             </div>
             
             <div class="control-group">

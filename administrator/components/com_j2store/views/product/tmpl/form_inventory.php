@@ -25,7 +25,7 @@ $wa->addInlineStyle($style, [], []);
             <div class="form-grid">
                 <div class="control-group">
                     <div class="control-label"><?php echo J2Html::label(Text::_('J2STORE_PRODUCT_MANAGE_STOCK'),'manage_stock'); ?></div>
-		            <?php echo J2Html::inlineRadio($this->form_prefix.'[manage_stock]', (isset($this->variant->manage_stock))?$this->variant->manage_stock:''); ?>
+		            <?php echo J2Html::radioBooleanList($this->form_prefix.'[manage_stock]', (isset($this->variant->manage_stock))?$this->variant->manage_stock:''); ?>
                 </div>
                 <div class="control-group">
                     <div class="control-label"><?php echo J2Html::label(Text::_('J2STORE_PRODUCT_QUANTITY'), 'quantity');?></div>
@@ -63,7 +63,7 @@ $wa->addInlineStyle($style, [], []);
                 </div>
                 <div class="control-group">
                     <div class="control-label"><?php echo J2Html::label(Text::_('J2STORE_PRODUCT_QUANTITY_RESTRICTION'), 'quantity_restriction'); ?></div>
-		            <?php echo J2Html::inlineRadio($this->form_prefix.'[quantity_restriction]',(isset($this->variant->quantity_restriction))? $this->variant->quantity_restriction : '' ); ?>
+		            <?php echo J2Html::radioBooleanList($this->form_prefix.'[quantity_restriction]',(isset($this->variant->quantity_restriction))? $this->variant->quantity_restriction : '' ); ?>
                 </div>
                 <div class="control-group mb-0">
                     <div class="control-label"><?php echo J2Html::label(Text::_('J2STORE_PRODUCT_MAX_SALE_QUANTITY'), 'max_sale_qty'); ?></div>
