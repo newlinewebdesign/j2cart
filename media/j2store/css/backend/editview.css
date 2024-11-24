@@ -12,10 +12,6 @@
     flex: none;
 }
 
-.com_j2store  .control-group .controls .input-group .form-control {
-    width:150px;
-    flex:none;
-}
 
 .com_j2store select:not(.form-select) {
     width: 203px;

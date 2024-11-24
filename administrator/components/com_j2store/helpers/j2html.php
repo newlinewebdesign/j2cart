@@ -213,21 +213,9 @@ class J2Html
 		$html = '';
 		$id = $options['id'] ?? $name;
 
-		// Display label if hide_label is not set or empty
-		if (empty($options['hide_label'])) {
-			$html .= '<div class="control-group">';
-			$labelText = $options['label_text'] ?? Text::_('JGLOBAL_YES');
-			$html .= self::label($labelText, $options);
-		}
-
 		// Use HTMLHelper to generate the boolean list with localized labels for yes/no
 		$attribs = [];
 		$html .= HTMLHelper::_('select.booleanlist', $name, $attribs, $value, Text::_('JYES'), Text::_('JNO'), $id);
-
-		// Close the control group div if label is displayed
-		if (empty($options['hide_label'])) {
-			$html .= '</div>';
-		}
 
 		return $html;
 	}
