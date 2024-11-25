@@ -880,7 +880,11 @@ div.j2store-tab div.j2store-tab-content:not(.active){
         background-color:#132f53;
     }
     #j2store-navbar .img-circle {height:32px;width:auto;}
-    #j2store-navbar .navbar-nav .nav-item .nav-link {display: block;margin-inline-end:0;width:100%;}
+    #j2store-navbar .navbar-nav .nav-item .nav-link {
+      display: block;
+      margin-inline-end:0;
+      width:100%;
+    }
     #j2store-navbar .navbar-nav .dropdown-menu {
         position: static;
     }
