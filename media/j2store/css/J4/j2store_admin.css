@@ -639,7 +639,9 @@ div.j2store-tab div.j2store-tab-content:not(.active){
   padding: 20px;
 }
 
-.filterRemove {cursor:pointer;}
+.filterRemove {
+  cursor:pointer;
+}
 
 .j2store-product-edit-form .tabs-left > .nav-tabs > li > a {
     border-radius: 0px !important;
