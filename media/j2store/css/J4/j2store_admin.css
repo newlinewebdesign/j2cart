@@ -626,9 +626,18 @@ div.j2store-tab div.j2store-tab-content:not(.active){
 }
 
 /* product form */
-#fieldset-j2store.options-form {padding: 0.5vw 1vw;}
-#fieldset-j2store.options-form > legend {margin-bottom: 0.25rem;}
-.j2store-product-edit-form {background: none repeat scroll 0 0 var(--admin-background);padding: 20px;}
+#fieldset-j2store.options-form {
+  padding: 0.5vw 1vw;
+}
+
+#fieldset-j2store.options-form > legend {
+  margin-bottom: 0.25rem;
+}
+
+.j2store-product-edit-form {
+  background: none repeat scroll 0 0 var(--admin-background);
+  padding: 20px;
+}
 
 .filterRemove {cursor:pointer;}
 
