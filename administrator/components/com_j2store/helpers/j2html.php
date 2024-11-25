@@ -703,7 +703,7 @@ class J2Html
         }
 
         $html = '';
-        $html .= '<div class="alert alert-block alert-info"><strong id="j2store_queue_key">'.$queue_key.'</strong><a onclick="regenerateQueueKey()" class="btn btn-primary btn-sm text-white ms-3"><i class="fas fa-solid fa-redo me-2"></i>'.Text::_ ( 'J2STORE_STORE_REGENERATE' ).'</a>
+        $html .= '<div class="alert alert-block alert-info"><strong id="j2store_queue_key">'.$queue_key.'</strong><a onclick="regenerateQueueKey()" class="btn btn-primary btn-sm text-white ms-3"><span class="fas fa-solid fa-redo me-2" aria-hidden="true"></span>'.Text::_ ( 'J2STORE_STORE_REGENERATE' ).'</a>
 		<script>
 		function regenerateQueueKey(){
 			(function($){
