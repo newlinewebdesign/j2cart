@@ -79,13 +79,14 @@ class J2StoreModelVariants extends F0FModel {
 
 
 	/**
-	 * Method to return rows in  associative array of table given
+	 * Method to return rows in associative array of table given
 	 * @param string $table_name
 	 * @param string $column
 	 * @param string $key
 	 */
-	public function getDimensions($table_name,$column ,$key){
-        $db = Factory::getContainer()->get('DatabaseDriver');
+	public function getDimensions($table_name, $column, $key)
+	{
+        	$db = Factory::getContainer()->get('DatabaseDriver');
 		$table = '#__j2store_'.$table_name;
 		$query = $db->getQuery(true);
 		$query->select('*');
