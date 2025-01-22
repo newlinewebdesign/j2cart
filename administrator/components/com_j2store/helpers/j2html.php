@@ -200,6 +200,24 @@ class J2Html
         return self::input('radio', $name, $value, $options);
     }
 
+	/**
+	 * Creates an inline radio field
+	 * @param string $name
+	 * @param string $value
+	 * @param array $options
+	 * @result html
+	 */
+	public static function inlineRadio($name, $value = '', $options = [])
+	{
+		$html = '';
+		$id = $options['id'] ?? $name;
+
+		// Use HTMLHelper to generate the boolean list with localized labels for yes/no
+		$attribs = [];
+		$html .= HTMLHelper::_('select.booleanlist', $name, $attribs, $value, Text::_('JYES'), Text::_('JNO'), $id);
+
+		return $html;
+	}
 
     /**
      * Creates a radio boolean  field
@@ -1132,7 +1150,7 @@ class J2Html
         $attr = array ();
         // Get the field options.
         // Initialize some field attributes.
-        $attr ['class'] = ! empty ( $options->class ) ? $options->class : '';
+        $attr['class'] = !empty($options->class) ? $options->class : 'form-select';
         // Initialize JavaScript field attributes.
         $attr ['onchange'] = isset ( $options->onchange ) ? $options->onchange : '';
         $attr ['id'] = isset ( $options->id ) ? $options->id : '';
