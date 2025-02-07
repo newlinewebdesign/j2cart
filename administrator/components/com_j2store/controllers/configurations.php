@@ -11,7 +11,6 @@ defined('_JEXEC') or die('Restricted access');
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Toolbar\ToolbarHelper;
 
-
 require_once JPATH_ADMINISTRATOR . '/components/com_j2store/controllers/traits/list_view.php';
 
 class J2StoreControllerConfigurations extends F0FController
@@ -629,7 +628,7 @@ class J2StoreControllerConfigurations extends F0FController
                     'type' => 'radiolist',
                     'name' => 'show_thumb_cart',
                     'value' => isset($vars->item->show_thumb_cart) && !is_null($vars->item->show_thumb_cart) ? $vars->item->show_thumb_cart : 0,
-                    'options' => array('class' => 'radio-list', 'options' => array(0 => Text::_('J2STORE_HIDE'), 3 => Text::_('J2STORE_SHOW'))),
+                    'options' => array('class' => 'radio-list', 'options' => array(0 => Text::_('JHIDE'), 3 => Text::_('JSHOW'))),
                     'desc' => 'J2STORE_CONF_SHOW_THUMB_CART_DESC'
                 ),
                 'show_item_tax' => array(
@@ -701,7 +700,7 @@ class J2StoreControllerConfigurations extends F0FController
                     'type' => 'radiolist',
                     'name' => 'show_clear_cart_button',
                     'value' => isset($vars->item->show_clear_cart_button) && !is_null($vars->item->show_clear_cart_button) ? $vars->item->show_clear_cart_button : 0,
-                    'options' => array('class' => 'radio-list', 'options' => array(0 => Text::_('J2STORE_HIDE'), 3 => Text::_('J2STORE_SHOW'))),
+                    'options' => array('class' => 'radio-list', 'options' => array(0 => Text::_('JHIDE'), 3 => Text::_('JSHOW'))),
                     'desc' => 'J2STORE_CONF_SHOW_CLEAR_CART_BUTTON_DESC'
                 ),
                 'postalcode_required' => array(
@@ -718,7 +717,8 @@ class J2StoreControllerConfigurations extends F0FController
                     'name' => 'clear_cart',
                     'value' => isset($vars->item->clear_cart) && !is_null($vars->item->clear_cart) ? $vars->item->clear_cart : 'order_placed',
                     'options' => array('options' => array('order_placed' => Text::_('J2STORE_ON_PLACEMENT_OF_ORDER'), 'order_confirmed' => Text::_('J2STORE_ON_PAYMENT_CONFIRMATION'))),
-                    'desc' => 'J2STORE_CONF_CLEAR_CART_DESC', 'class'=>'form-select'
+                    'desc' => 'J2STORE_CONF_CLEAR_CART_DESC',
+                    'class'=>'form-select'
                 ),
                 'default_payment_method' => array(
                     'label' => 'J2STORE_CONF_DEFAULT_PAYMENT_METHOD_LABEL',
@@ -830,7 +830,7 @@ class J2StoreControllerConfigurations extends F0FController
                     'type' => 'list',
                     'name' => 'download_area',
                     'value' => isset($vars->item->download_area) && !is_null($vars->item->download_area) ? $vars->item->download_area : 1,
-                    'options' => array('class' => 'form-select', 'options' => array(0 => Text::_('J2STORE_HIDE'), 1 => Text::_('J2STORE_SHOW'))),
+                    'options' => array('class' => 'form-select', 'options' => array(0 => Text::_('JHIDE'), 1 => Text::_('JSHOW'))),
                     'desc' => 'J2STORE_CONF_SHOW_DOWNLOAD_AREA_DESC'
                 ),
                 'limit_orderstatuses' => array(
@@ -846,7 +846,7 @@ class J2StoreControllerConfigurations extends F0FController
                     'type' => 'radiolist',
                     'name' => 'show_thumb_email',
                     'value' => isset($vars->item->show_thumb_email) && !is_null($vars->item->show_thumb_email) ? $vars->item->show_thumb_email : 0,
-                    'options' => array('class' => 'radio-list', 'options' => array(0 => Text::_('J2STORE_HIDE'), 1 => Text::_('J2STORE_SHOW'))),
+                    'options' => array('class' => 'radio-list', 'options' => array(0 => Text::_('JHIDE'), 1 => Text::_('JSHOW'))),
                     'desc' => 'J2STORE_CONF_SHOW_THUMB_EMAIL_DESC'
                 ),
                 'show_logout_myprofile' => array(
@@ -854,7 +854,7 @@ class J2StoreControllerConfigurations extends F0FController
                     'type' => 'radiolist',
                     'name' => 'show_logout_myprofile',
                     'value' => isset($vars->item->show_logout_myprofile) && !is_null($vars->item->show_logout_myprofile) ? $vars->item->show_logout_myprofile : 0,
-                    'options' => array('class' => 'radio-list', 'options' => array(0 => Text::_('J2STORE_HIDE'), 1 => Text::_('J2STORE_SHOW'))),
+                    'options' => array('class' => 'radio-list', 'options' => array(0 => Text::_('JHIDE'), 1 => Text::_('JSHOW'))),
                     'desc' => 'J2STORE_CONF_SHOW_LOGOUT_MYPROFILE_DESC'
                 ),
                 'backend_voucher_to_shipping' => array(
