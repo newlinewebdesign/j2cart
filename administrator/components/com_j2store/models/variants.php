@@ -98,4 +98,9 @@ class J2StoreModelVariants extends F0FModel {
 		return $results;
 	}
 
+	// Kept to avoid b/c breaks
+	public function getDimesions($table_name, $column, $key)
+	{
+		return $this->getDimensions($table_name, $column, $key);
+	}
 }
