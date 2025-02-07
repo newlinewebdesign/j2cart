@@ -87,9 +87,9 @@ class J2Html
         $value = str_replace(str_split('\\/:*?"<>|+-'),'',$value);
         // return price input
         $html = '';
-        $html .= '<div class="input-prepend">';
+        $html .= '<div class="input-group">';
         if (!empty($symbol)) {
-            $html .= '<span class="add-on">' . $symbol . '</span>';
+            $html .= '<span class="input-group-text">' . $symbol . '</span>';
         }
         $html .= '<input type="text" name="' . $prefix . $name . '" value="' . $value . '"  ' . $optionvalue . '    />';
         $html .= '</div>';
@@ -231,21 +231,9 @@ class J2Html
 		$html = '';
 		$id = $options['id'] ?? $name;
 
-		// Display label if hide_label is not set or empty
-		if (empty($options['hide_label'])) {
-			$html .= '<div class="control-group">';
-			$labelText = $options['label_text'] ?? Text::_('JGLOBAL_YES');
-			$html .= self::label($labelText, $options);
-		}
-
 		// Use HTMLHelper to generate the boolean list with localized labels for yes/no
 		$attribs = [];
 		$html .= HTMLHelper::_('select.booleanlist', $name, $attribs, $value, Text::_('JYES'), Text::_('JNO'), $id);
-
-		// Close the control group div if label is displayed
-		if (empty($options['hide_label'])) {
-			$html .= '</div>';
-		}
 
 		return $html;
 	}
@@ -733,7 +721,7 @@ class J2Html
         }
 
         $html = '';
-        $html .= '<div class="alert alert-block alert-info"><strong id="j2store_queue_key">'.$queue_key.'</strong><a onclick="regenerateQueueKey()" class="btn btn-primary btn-sm text-white ms-3"><span class="fas fa-solid fa-redo me-2"></span>'.Text::_ ( 'J2STORE_STORE_REGENERATE' ).'</a>
+        $html .= '<div class="alert alert-block alert-info"><strong id="j2store_queue_key">'.$queue_key.'</strong><a onclick="regenerateQueueKey()" class="btn btn-primary btn-sm text-white ms-3"><span class="fas fa-solid fa-redo me-2" aria-hidden="true"></span>'.Text::_ ( 'J2STORE_STORE_REGENERATE' ).'</a>
 		<script>
 		function regenerateQueueKey(){
 			(function($){
@@ -1162,7 +1150,7 @@ class J2Html
         $attr = array ();
         // Get the field options.
         // Initialize some field attributes.
-        $attr ['class'] = ! empty ( $options->class ) ? $options->class : '';
+        $attr['class'] = !empty($options->class) ? $options->class : 'form-select';
         // Initialize JavaScript field attributes.
         $attr ['onchange'] = isset ( $options->onchange ) ? $options->onchange : '';
         $attr ['id'] = isset ( $options->id ) ? $options->id : '';
@@ -1186,7 +1174,14 @@ class J2Html
         return $my_editor;
     }
 
-    public static function article($name, $value, $options){
+	// Kept to avoid b/c breaks;
+	public static function artical($name, $value, $options)
+	{
+		return self::article($name, $value, $options);
+	}
+
+    public static function article($name, $value, $options)
+	{
         $platform = J2Store::platform();
         //
         $allowClear     = true;
@@ -1360,7 +1355,6 @@ jQuery('.modal-backdrop').remove();
         }
 
         return $html;
-
     }
 
     public static function getOrderStatusHtml($id)
@@ -1552,6 +1546,50 @@ jQuery('.modal-backdrop').remove();
 
         return $html;
     }
+
+	public static function checkboxswitch($data, $name, $attribs = null, $optKey = 'value', $optText = 'text', $selected = null, $idtag = false,
+	                                    $translate = false)
+	{
+		reset($data);
+
+		if (is_array($attribs)) {
+			$attribs = J2Store::platform()->toString($attribs);
+		}
+
+		$id_text = $idtag ? $idtag : $name;
+
+		$html = '<div class="form-check form-switch">';
+
+		foreach ($data as $obj) {
+			$k = $obj->$optKey;
+			$t = $translate ? Text::_($obj->$optText) : $obj->$optText;
+			$id = (isset($obj->id) ? $obj->id : null);
+
+			$extra = '';
+			$id = $id ? $obj->id : $id_text . $k;
+
+			if (is_array($selected)) {
+				foreach ($selected as $val) {
+					$k2 = is_object($val) ? $val->$optKey : $val;
+
+					if ($k == $k2) {
+						$extra .= ' selected="selected" ';
+						break;
+					}
+				}
+			} else {
+				$extra .= ((string)$k == (string)$selected ? ' checked="checked" ' : '');
+			}
+
+			$html .= '<input type="checkbox" name="' . $name . '" id="' . $id . '" value="' . $k . '" ' . $extra. $attribs . ' >';
+			$html .= '<label for="' . $id . '" id="' . $id . '-lbl" class="form-check-label">';
+			$html .= $t;
+			$html .= '</label>';
+		}
+		$html .= '</div>';
+
+		return $html;
+	}
 
     /**
      * Method to return PRO feature notice
