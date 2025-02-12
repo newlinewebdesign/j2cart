@@ -6,12 +6,15 @@
  */
 // No direct access to this file
 defined('_JEXEC') or die;
+
+use Joomla\CMS\Factory;
+
 $platform = J2Store::platform();
 $platform->loadExtra('bootstrap.tooltip');
 $platform->loadExtra('behavior.framework');
 
 $app = $platform->application();
-$db = JFactory::getDbo();
+$db = Factory::getContainer()->get('DatabaseDriver');
 $function  = $app->input->getString('function', 'jSelectProduct');
 $field = $app->input->getString('field');
 $listOrder = $this->escape($this->state->get('list.ordering'));
@@ -191,14 +194,9 @@ Joomla.isChecked=function(a,d){
 		var html ='';
 		newArray = mergeArray(checkedValues , product_titles)
 		$(newArray).each(function(index,value){
-			if($('#jform_product_list' ,window.parent.document).find('#product-row-'+value.id ).length == 0){
-				html ='<tr id="product-row-'+ value.id +'"><td><input type="hidden" name="products['+value.id +']" value='+value.id+' />'+value.product_title +'</td><td><button class="btn btn-danger" onclick="jQuery(this).closest(\'tr\').remove();"><i class="icon icon-trash"></button></td></tr>';
-				$('#jform_product_list', window.parent.document).append(html);
-				window.close();
-			}
+			window.parent.<?php echo $function; ?>(value.id, value.product_title, '<?php echo $field; ?>');
 		});
 		checkedValues.length='';
-
 	});
 
  	function mergeArray(checkedValues , product_titles){
