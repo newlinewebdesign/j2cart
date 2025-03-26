@@ -709,11 +709,9 @@ class J2Product extends JObject
 	 * */
 	public function displayQuantity($context, $product, $params=array(), $options = array() )
     {
-		if( empty($params) ) {
-			$params = J2Store::config();
-		}
 
-        $params = J2Store::platform()->getRegistry($params);
+
+	    $params = J2Store::config();
 		$class = 'input-mini form-control ';
 		if ( isset($options['class']) && !empty($options['class']) ) {
 			$class = $options['class'];
