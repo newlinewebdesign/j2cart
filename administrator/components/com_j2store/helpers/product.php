@@ -665,7 +665,7 @@ class J2Product extends JObject
 	return $return;
 	}
 
-	public function displayPrice($price, $product, $params=array(),$context='')
+	public function displayPrice($price, $product, $params = null, $context = '')
     {
 		$currency = J2Store::currency();
 		if(empty($params)) {
@@ -707,11 +707,11 @@ class J2Product extends JObject
 	 * @param 	array 		$options 	options or extra attribs for the element
 	 * @return 	string 					html for the quantity box
 	 * */
-	public function displayQuantity($context, $product, $params=array(), $options = array() )
+	public function displayQuantity($context, $product, $params = null, $options = array())
     {
-
-
-	    $params = J2Store::config();
+		if (empty($params)) {
+	    	$params = J2Store::config();
+		}
 		$class = 'input-mini form-control ';
 		if ( isset($options['class']) && !empty($options['class']) ) {
 			$class = $options['class'];
