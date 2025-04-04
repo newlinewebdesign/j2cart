@@ -148,7 +148,7 @@ class J2StoreControllerConfigurations extends F0FController
                     'label' => 'J2STORE_CONF_BOOTSTRAP_VERSION',
                     'type' => 'list',
                     'name' => 'bootstrap_version',
-                    'value' => isset($vars->item->bootstrap_version) && !is_null($vars->item->bootstrap_version) ? $vars->item->bootstrap_version : 2,
+                    'value' => isset($vars->item->bootstrap_version) && !is_null($vars->item->bootstrap_version) ? $vars->item->bootstrap_version : 5,
                     'options' => array(
                         'options' => array(2 => Text::_('J2STORE_BOOTSTRAP2'), 3 => Text::_('J2STORE_BOOTSTRAP3'),4 => Text::_('J2STORE_BOOTSTRAP4'),5 => Text::_('J2STORE_BOOTSTRAP5'))
                     ),
@@ -870,6 +870,14 @@ class J2StoreControllerConfigurations extends F0FController
                     'name' => 'backend_voucher_to_shipping',
                     'value' => isset($vars->item->backend_voucher_to_shipping) && !is_null($vars->item->backend_voucher_to_shipping) ? $vars->item->backend_voucher_to_shipping : 1,
                     'options' => array('class' => 'radio-list','options' => array(0 => Text::_('JNO'), 1 => Text::_('JYES')))
+                ),
+                'export_column_per_product_option' => array(
+                    'label' => 'J2STORE_CONF_EXPORT_PRODUCT_OPTIONS_PER_COLUMN_LABEL',
+                    'type' => 'radiolist',
+                    'name' => 'export_column_per_product_option',
+                    'value' => isset($vars->item->export_column_per_product_option) && !is_null($vars->item->export_column_per_product_option) ? $vars->item->export_column_per_product_option : 0,
+                    'options' => array('class' => 'radio-list','options' => array(0 => Text::_('JNO'), 1 => Text::_('JYES'))),
+                    'desc' => 'J2STORE_CONF_EXPORT_PRODUCT_OPTIONS_PER_COLUMN_DESC'
                 ),
             )
         );
