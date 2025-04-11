@@ -169,13 +169,13 @@ class J2StoreStrapper {
                 $template = self::getDefaultTemplate();
                 // j2store.css
 	            if (file_exists( JPATH_SITE . 'templates/' . $template . '/css/j2store.css')){
-		            $wa->registerAndUseStyle('j2store-css', Uri::root() .'media/templates/site/' . $template . '/css/j2store.css');
+					$wa->registerAndUseStyle('j2store-css', Uri::root() .'media/templates/site/' . $template . '/css/j2store.css');
 	            } elseif(file_exists( JPATH_SITE . 'media/templates/site/' . $template . '/css/j2store.css')) {
-		            $wa->registerAndUseStyle('j2store-css', Uri::root() .'media/templates/site/' . $template . '/css/j2store.css');
-	            } else {
-		            $wa->registerAndUseStyle('j2store-css', Uri::root() .'media/j2store/css/j2store.css');
-	            }
-            } else {}
+					$wa->registerAndUseStyle('j2store-css', Uri::root() .'media/templates/site/' . $template . '/css/j2store.css');
+				} else {
+					$wa->registerAndUseStyle('j2store-css', Uri::root() .'media/j2store/css/j2store.css');
+				}
+            }
             $load_fancybox = $j2storeparams->get('load_fancybox', 1 );
             if($load_fancybox){
 	            $wa->registerAndUseStyle('j2store-fancybox-css', Uri::root() .'media/j2store/css/jquery.fancybox.min.css');
