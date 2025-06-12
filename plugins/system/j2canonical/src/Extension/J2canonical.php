@@ -40,6 +40,12 @@ final class J2canonical extends CMSPlugin implements SubscriberInterface
 {
     use DatabaseAwareTrait;
 
+    /**
+     * Cache of product→category mappings
+     *
+     * @var   array
+     */
+    protected static $j2_products = [];
 	protected $app;
 	protected $autoloadLanguage = true;
 
