@@ -29,16 +29,15 @@ return new class () implements ServiceProviderInterface {
      * @param   Container  $container  The DI container.
      *
      * @return  void
-     *
-     * @since   5.3.0
      */
     public function register(Container $container): void
     {
         $container->set(
             PluginInterface::class,
             function (Container $container) {
+                $dispatcher = $container->get(DispatcherInterface::class);
                 $plugin     = new J2canonical(
-                    $container->get(DispatcherInterface::class),
+                    $dispatcher,
                     (array) PluginHelper::getPlugin('system', 'j2canonical')
                 );
                 $plugin->setApplication(Factory::getApplication());
