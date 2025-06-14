@@ -8,7 +8,7 @@
  * @website https://www.j2commerce.com
  */
 
-namespace J2Commerce\Plugin\System\Extension;
+namespace J2Commerce\Plugin\System\J2canonical\Extension;
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Helper\ModuleHelper;
