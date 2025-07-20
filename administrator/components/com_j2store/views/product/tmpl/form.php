@@ -35,6 +35,7 @@ $wa->addInlineStyle($style, [], []);
     Joomla.submitbutton = function(pressbutton) {
         var form = document.adminForm;
         if(pressbutton == 'article.cancel') {
+            document.adminForm.task.value = pressbutton;
             J2StoreSubmitbuttonOverride(pressbutton);
         }else if(pressbutton == 'article.apply') {
             if (document.formvalidator.isValid(form)) {
