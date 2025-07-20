@@ -49,7 +49,7 @@ $wa->addInlineStyle($style, [], []);
             else {
                 let msg = [];
                 msg.push('');
-                document.getElementById('system-message-container').innerHTML = "msg.join('\n') ;"
+                document.getElementById('system-message-container').innerHTML = msg.join('\n');
             }
         }else{
             if (document.formvalidator.isValid(form)) {
@@ -59,7 +59,7 @@ $wa->addInlineStyle($style, [], []);
             else {
                 let msg = [];
                 msg.push('');
-                document.getElementById('system-message-container').innerHTML = msg.join('\n') ;
+                document.getElementById('system-message-container').innerHTML = msg.join('\n');
             }
         }
     }
