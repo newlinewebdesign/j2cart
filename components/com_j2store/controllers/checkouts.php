@@ -1,13 +1,14 @@
 <?php
 /**
- * @package J2Commerce
+ * @package     Joomla.Component
+ * @subpackage  J2Store
  *
- * @copyright Copyright (C) 2024-2025 J2Commerce, LLC. All rights reserved.
+ * @copyright Copyright (C) 2014-24 Ramesh Elamathi / J2Store.org
+ * @copyright Copyright (C) 2025 J2Commerce, LLC. All rights reserved.
  * @license https://www.gnu.org/licenses/gpl-3.0.html GNU/GPLv3 or later
  * @website https://www.j2commerce.com
  */
 
-// No direct access to this file
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Document\Document;
@@ -86,13 +87,13 @@ class J2StoreControllerCheckouts extends F0FController
 
 		$order = J2Store::fof()->getModel('Orders', 'J2StoreModel')->initOrder()->getOrder();
 		$items = $order->getItems();
-		$session = Factory::getApplication()->getSession();
+		$session = $app->getSession();
 		$is_mobile = $session->get('is_mobile','','j2store');
         $cart_params = array();
         if ($is_mobile){
             $cart_params['mobile'] = 'mobile';
         }
-		$link = J2Store::platform()->getCartUrl($cart_params);//JRoute::_('index.php?option=com_j2store&view=carts'.$mobile);
+		$link = J2Store::platform()->getCartUrl($cart_params);//Route::_('index.php?option=com_j2store&view=carts'.$mobile);
 
 		if(count($items) < 1) {
 			$app->enqueueMessage(Text::_('J2STORE_CART_NO_ITEMS'), 'notice');
@@ -248,7 +249,7 @@ class J2StoreControllerCheckouts extends F0FController
 
 		$selectableBase = J2Store::getSelectableBase();
 		$view->set('fieldsClass', $selectableBase);
-		$address = F0FTable::getAnInstance('address', 'J2StoreTable');
+		$address = J2Store::fof()->loadTable('address', 'J2StoreTable');
 		$fields = $selectableBase->getFields('billing',$address,'address');
 		J2Store::plugin ()->event ( 'BeforeCheckoutRegister', array(&$address,$order) );
 		$view->set('fields', $fields);
@@ -270,7 +271,7 @@ class J2StoreControllerCheckouts extends F0FController
 		$this->showShipping = $showShipping;
 
 		$view->set( 'showShipping', $showShipping );
-        $view->set( 'privacyconsent_enabled',PluginHelper::isEnabled('system', 'privacyconsent'));
+        $view->set( 'privacyconsent_enabled', PluginHelper::isEnabled('system', 'privacyconsent'));
 		$view->setLayout( 'default_register');
 		$html = '';
 
@@ -364,7 +365,6 @@ class J2StoreControllerCheckouts extends F0FController
                 }
 				//$billing_address_id = $userHelper->addCustomer($post);
 				$billing_address_id = $address_model->addAddress('billing');
-
 
 				//check if we have a country and zone id's. If not use the store address
 				$country_id = $app->input->post->getInt('country_id', '');
@@ -1130,7 +1130,6 @@ class J2StoreControllerCheckouts extends F0FController
 		//get layout settings
 		$view->set('storeProfile', J2Store::storeProfile());
 
-
 		$view->setLayout( 'default_shipping');
 
 		$html = '';
@@ -1806,7 +1805,7 @@ class J2StoreControllerCheckouts extends F0FController
 				$element,
 				$values
 		) );
-		for($i = 0; $i < count ( $results ); $i ++) {
+		for($i = 0; $i < count($results); $i ++) {
 			$result = $results [$i];
 			$text .= $result;
 		}
@@ -1843,7 +1842,7 @@ class J2StoreControllerCheckouts extends F0FController
 				$values
 		) );
 
-		for($i = 0; $i < count ( $results ); $i ++) {
+		for($i = 0; $i < count($results); $i ++) {
 			$result = $results [$i];
 			if (! empty ( $result->error )) {
 				$response ['msg'] = $result->message;
@@ -1870,7 +1869,7 @@ class J2StoreControllerCheckouts extends F0FController
 			}
 		}
 
-		if ((float) $order->order_total == (float) '0.00') {
+		if ((float) $order->order_total == (float)'0.00') {
 			return true;
 		}
 
@@ -1881,7 +1880,7 @@ class J2StoreControllerCheckouts extends F0FController
 				$values
 		) );
 
-		for($i = 0; $i < count ( $results ); $i ++) {
+		for($i = 0; $i < count($results); $i ++) {
 			$result = $results [$i];
 			if (! empty ( $result->error )) {
 				throw new Exception ($result->message);
@@ -1906,7 +1905,7 @@ class J2StoreControllerCheckouts extends F0FController
 	{
 		J2Store::utilities()->nocache();
 
-		$app = Factory::getApplication ();
+		$app = Factory::getApplication();
 		$user = $app->getIdentity();
 		$session = $app->getSession();
 		$params = J2Store::config();
@@ -1982,8 +1981,8 @@ class J2StoreControllerCheckouts extends F0FController
 					$values
 			) );
 
-			// Display whatever comes back from Payment Plugin for the onPrePayment
-			for($i = 0; $i < count ($results); $i ++) {
+			// Display whatever comes back from the payment plugin for the onPrePayment
+			for($i = 0; $i < count($results); $i ++) {
 				$html .= $results [$i];
 			}
 
