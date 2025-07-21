@@ -78,30 +78,30 @@ $wa->addInlineStyle($style, [], []);
                         <div class="form-grid">
                             <div class="control-group" id="j2store-product-enable">
                                 <div class="control-label"><?php echo J2Html::label(Text::_('J2STORE_TREAT_AS_PRODUCT'), 'enabled',array());?></div>
-								<?php echo J2Html::radioBooleanList($this->form_prefix.'[enabled]', $this->item->enabled, array('id'=>'j2store-product-enabled-radio-group', 'class'=>'form-check form-check-inline','hide_label'=>true));?>
+                                <?php echo J2Html::radioBooleanList($this->form_prefix.'[enabled]', $this->item->enabled, array('id'=>'j2store-product-enabled-radio-group', 'class'=>'form-check form-check-inline','hide_label'=>true));?>
                             </div>
                             <div class="control-group" id="j2store-product-type">
-								<?php if(!empty($this->item->product_type)): ?>
+                                <?php if(!empty($this->item->product_type)): ?>
                                     <div class="control-label"><?php echo J2Html::label(Text::_('J2STORE_PRODUCT_TYPE'), 'product_type',array()); ?></div>
                                     <div class="controls">
                                         <span class="<?php echo $product_type_class;?>"><?php echo Text::_('J2STORE_PRODUCT_TYPE_'.strtoupper($this->item->product_type)) ?></span>
                                     </div>
-									<?php echo J2Html::hidden($this->form_prefix.'[product_type]', $this->item->product_type); ?>
-								<?php else: ?>
+                                    <?php echo J2Html::hidden($this->form_prefix.'[product_type]', $this->item->product_type); ?>
+                                <?php else: ?>
                                     <div class="control-label"><?php echo J2Html::label(Text::_('J2STORE_PRODUCT_TYPE'), 'product_type',array()); ?></div>
                                     <div class="controls"><?php echo str_replace('<select', '<select class="form-select"', $this->product_types); ?></div>
-								<?php endif; ?>
+                                <?php endif; ?>
                             </div>
-							<?php if(!$this->item->enabled): ?>
+                            <?php if(!$this->item->enabled): ?>
                                 <!-- Show this only when this was not a product -->
-								<?php if($option == 'com_content' && J2Store::platform()->isClient('administrator')): ?>
+                                <?php if($option == 'com_content' && J2Store::platform()->isClient('administrator')): ?>
                                     <div class="control-group">
                                         <div class="controls">
                                             <input type="button" id="submit_button" onclick="Joomla.submitbutton('article.apply')" class="btn btn-primary" value="<?php echo Text::_('J2STORE_SAVE_AND_CONTINUE'); ?>" />
                                         </div>
                                     </div>
-								<?php endif; ?>
-							<?php endif; ?>
+                                <?php endif; ?>
+                            <?php endif; ?>
 
 							<?php if($this->item->j2store_product_id && $this->item->enabled && $this->item->product_type): ?>
                                 <div class="control-group">
