@@ -8,7 +8,7 @@
  * @website https://www.j2commerce.com
  */
 
-namespace J2Commerce\Plugin\System\Extension;
+namespace J2Commerce\Plugin\System\J2canonical\Extension;
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Helper\ModuleHelper;
@@ -123,7 +123,6 @@ final class J2canonical extends CMSPlugin implements SubscriberInterface
             $j2prod = $fof_helper->loadTable('Products','J2StoreTable');
             $j2prod->load($j2_product_id);
             if($j2prod->j2store_product_id == $j2_product_id){
-                $base = trim(Uri::base(),'/');
                 $url = '';
                 $current_url_canonical = $this->params->get('current_url_canonical',1);
                 if($view == 'products'){
@@ -170,8 +169,7 @@ final class J2canonical extends CMSPlugin implements SubscriberInterface
                 }
 
                 if ( !empty($url) ) {
-                    $url = Route::_($url);
-                    $this->canonical = $base.'/'.trim($url,'/');
+                    $this->canonical = Route::_($url, true, Route::TLS_IGNORE, true); // automatically returns the full path
                 }
             }
         }

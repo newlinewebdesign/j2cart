@@ -9,7 +9,7 @@
     <authorEmail>support@j2commerce.com</authorEmail>
     <authorUrl>https://www.j2commerce.com</authorUrl>
     <version>4.1.0</version>
-    <namespace path="src">J2Commerce\Plugin\System</namespace>
+    <namespace path="src">J2Commerce\Plugin\System\J2canonical</namespace>
 	<description>PLG_SYSTEM_J2CANONICAL_DESC</description>
 	<files>
 		<folder plugin="j2canonical">services</folder>
