@@ -1712,7 +1712,6 @@ class J2StoreControllerCheckouts extends F0FController
 			} catch (Exception $e) {
 				$errors[] = $e->getMessage();
 			}
-
 		}
 
 		if(count($errors)) {
@@ -1862,7 +1861,7 @@ class J2StoreControllerCheckouts extends F0FController
 	{
 		$error = 0;
 
-		if (isset($values ['shippingrequired'] )) {
+		if (isset($values['shippingrequired'])) {
 			if ($values ['shippingrequired'] === 1 && empty ( $values ['shipping_plugin'] )) {
 				throw new Exception(Text::_('J2STORE_CHECKOUT_SELECT_A_SHIPPING_METHOD'));
 				return false;
@@ -1965,7 +1964,7 @@ class J2StoreControllerCheckouts extends F0FController
 			// After confirm free product
 			J2Store::plugin()->event( "AfterConfirmFreeProduct", array ($order) );
 
-			//free product. So clear cart.
+			// Free product. So clear cart.
 			if($clear_cart === 'order_confirmed') {
 				$order->empty_cart();
 			}
