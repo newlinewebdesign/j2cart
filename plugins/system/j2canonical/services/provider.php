@@ -21,6 +21,7 @@ use Joomla\DI\ServiceProviderInterface;
 use Joomla\Event\DispatcherInterface;
 use J2Commerce\Plugin\System\J2canonical\Extension\J2canonical;
 
+
 return new class () implements ServiceProviderInterface {
     /**
      * Registers the service provider with a DI container.
